@@ -1,0 +1,434 @@
+@import './base/variables';
+@import './base/animations';
+@import './base/functions';
+
+*, p {
+    margin: 0;
+    padding: 0;
+}
+
+// MODAL
+
+body {
+    position: relative;
+
+    .modal {
+        position: fixed;
+        background: $modal-color;
+        width: 409px;
+        height: auto;
+        left: 20vh;
+        top: 33px;
+        z-index: 20px;
+        display: none;
+
+        .modal-wrap {
+            padding: 0 5% 5% 2.5%;
+            display: flex;
+            flex-direction: column;
+
+            .modal-top-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                p{
+                    font-family: $saira;
+                    font-style: normal;
+                    font-weight: normal;
+                    font-size: 38px;
+                    line-height: 42px;
+                    color: $main-white;
+
+                        &:first-child{
+                            text-transform: capitalize;
+                            padding-left: 5%;
+                            padding-top: 2.5%;
+                        }
+        
+                        &:last-child:hover{
+                            color: $main-black;
+                            cursor: pointer;
+                        }
+                }
+            }
+
+            input{
+                width: auto;
+                height: 50px;
+                margin-top: 2.5%;
+                padding-left: 5%;
+                font-family: $lato;
+                font-size: 14px;
+
+                    &::placeholder {
+                        color: $placeholder-color; 
+                    }
+            }
+
+            textarea{
+                @extend input;
+                margin-top: 2.5%;
+                padding-top: 2.5%;
+                height: 109px;
+                max-width: 357px;
+            }
+        }
+        .backdrop{
+            height: 100%;
+            width: 100%;
+            background-color: rgb(83, 83, 83);
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            opacity: 0.3;
+        }
+    }
+}
+
+// MAIN CONTENT
+
+.wrapper {
+    @include flexCenter();
+    flex-wrap: wrap;
+    height: 80vh;  
+    margin: 5%;
+    margin-bottom: 0;
+    justify-content: flex-end;
+    z-index: -10;
+}
+
+.container{
+    display: flex;
+    position: relative;
+    flex: 50%;
+    height: 40vh;
+    z-index: 0;
+}
+
+.column {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    min-height: 266px;
+    position: relative;
+    justify-content: flex-end;
+    p {
+        font-family: $rubik;
+        font-size: 32px;
+        line-height: 69%;
+        color: #466D8A;
+        padding: 50px 47px 0 0;
+    }
+}
+
+.one{
+    @include columnBG(($gradient-three, url(./images/1.png)), cover);    
+}
+.two{
+    @include columnBG(($gradient-three, url(./images/1.png)), cover);    
+}
+.three{
+    @include columnBG(($gradient-three, url(./images/3.png)), auto);    
+    p {
+        text-transform: capitalize;
+    }
+}
+.four{
+    @include columnBG(($gradient-four, url(./images/4.png)), center);    
+    p {
+        text-transform: uppercase;
+    }
+}
+
+// OVERLAY
+
+.overlay {
+    visibility: hidden;
+
+    @extend .column;
+    @include columnBG((url(./images/overlay.png), $overlay-color), 40%);
+    background-repeat: no-repeat;
+
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    color: $main-white;
+    z-index: 1;
+
+    transform: translateY(-100vh);
+    opacity: 0;
+
+    transition: all ease-in-out 0.3s;
+
+    .overlay-top{
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+
+        .overlay-top-name{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: flex-start;
+
+            p {
+                font-style: normal;
+                color: $main-white;
+
+                    &:first-child {
+                        font-family: $rubik;
+                        font-size: 32px;
+                        line-height: 38px;
+                        text-transform: uppercase;
+                        padding-top: 32px;
+                    }
+
+                    &:nth-child(2){
+                        font-family: $roboto;
+                        padding-top: 0;
+                        font-weight: normal;
+                        font-size: 18px;
+                        line-height: 21px;
+                        padding-top: 5px;
+                    }
+            }
+        }   
+    }
+
+    .overlay-middle{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        span {
+            font-family: $rubik;
+            font-style: normal;
+            font-weight: 500;
+            font-size: 48px;
+            line-height: 57px;
+        }
+    } 
+}
+
+// VISIBLE MODAL
+
+.dblock {
+    display: block !important;
+}
+
+// VISIBLE OVERLAY
+
+.visible {
+    visibility: visible;
+    transform: translateY(0);
+    opacity: 1;
+}
+
+// MODAL BUTTON
+
+.btn-action{
+    font-family: $roboto;
+    color: $main-white;
+    font-style: normal;
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 140%;
+    text-align: center;
+    letter-spacing: 0.03em;
+    text-transform: uppercase !important;
+    padding: 11px 59px;
+    border: 2px solid #FFFFFF;
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-bottom: 34px;
+    transition: all ease-in-out 0.2s;
+
+    &:visited,
+    &:link{
+        text-transform: none;
+        text-decoration: none;
+    }
+
+    &:hover{
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0, 0.2);
+    }
+
+    &:active{
+        transform: translateY(-3px); 
+        box-shadow: 0 5px 10px rgba(0,0,0, 0.2);
+    }
+}
+
+.blue{
+    background: #4DC6E4;
+    border: 1px solid rgba(159, 219, 234, 0.29);
+    box-sizing: border-box;
+    border-radius: 5px;
+    margin-top: 10px;
+    float: right;
+}
+
+// OVERLAY BUTTON
+
+.btn-plus {
+    background: $btn-color;
+    width: 90px;
+    height: 90px;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+
+
+    &:hover{
+        cursor: pointer;
+            .minus {
+                background-color: $main-black;
+            }
+    }   
+
+}
+
+.overlay-bg {
+    background: $overlay-color;
+    transition: all ease-in-out 0.3s;
+}
+
+.minus {
+    display: block;
+    background-color: $main-white;
+    height: 5px;
+    width: 25px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    transition: all ease-in-out 0.3s;
+    z-index: -1;
+}
+
+.plus{
+    @extend .minus;
+    transform: translate(-50%, -50%) rotate(90deg);
+}
+
+.rotate{
+    transform: translate(-50%, -50%) rotate(180deg) !important;
+}
+
+@media(max-width: 800px) {
+    .wrapper {
+        margin: 1.5%;
+        margin-bottom: 0;
+
+        .container{
+            flex: 100%;
+        }
+    }
+
+    .overlay {
+        transform: translateY(0);
+        transform: translateX(100vw);
+    }
+
+    .visible {
+        transform: translateX(0);
+    }
+
+    .btn-plus{
+        width: 60px;
+        height: 60px;
+        p{
+            padding-right: 0;
+        }
+    }
+
+    
+    .column {
+        align-items: center;
+        justify-content: center;
+
+        p{
+            padding: 0 !important;
+            white-space: nowrap;
+        }
+    }
+
+    .overlay-top {
+        justify-content: center !important;
+    }
+
+    .overlay-top-name{
+        justify-content: center !important;
+        align-items: center !important;
+    }
+
+    .overlay-middle {
+        span{
+            white-space: wrap;
+            text-align: center;
+        }
+    }
+
+    .modal{
+        left: 20% !important;
+    }
+}
+
+@media screen and (max-width: 600px), screen and (max-heigh: 600px) {
+    .modal{
+        left: 10% !important;
+        width: 350px !important;
+
+        textarea{
+            max-width: 305px !important;
+        }
+    }
+
+    .overlay-top-name{
+        p{
+            &:first-child{
+                font-size: 22px;
+            } 
+            &:nth-child(2){
+                font-size: 12px;
+            }
+        }
+    }
+
+    .overlay-middle{
+        span{
+            font-size: 35px !important;
+        }
+    }
+
+    .btn-action{
+        margin-bottom: 10px;
+        padding: 8px 45px;
+    }
+}
+
+@media(max-width: 420px) {
+    .modal{
+        left: 5% !important;
+        width: 300px !important;
+
+        textarea{
+            max-width: 260px !important;
+        }
+    }
+}
+
+@media(max-width: 350px) {
+    .modal{
+        width: 200px !important;
+        left: 7.5% !important;
+        textarea{
+            max-width: 172px !important;
+        }
+    }
+}

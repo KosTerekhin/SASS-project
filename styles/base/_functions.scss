@@ -1,0 +1,13 @@
+@mixin flexCenter {
+    display: flex;
+    justify-content: center;
+}
+
+// BG 
+
+@mixin columnBG($background, $size) {
+    background: $background;
+    background-size: $size;
+    background-position: center;
+}
+
