@@ -21,6 +21,7 @@ body {
         top: 33px;
         z-index: 20px;
         display: none;
+        opacity: 0;
 
         .modal-wrap {
             padding: 0 5% 5% 2.5%;
@@ -145,23 +146,21 @@ body {
 // OVERLAY
 
 .overlay {
-    visibility: hidden;
+    
 
     @extend .column;
     @include columnBG((url(./images/overlay.png), $overlay-color), 40%);
     background-repeat: no-repeat;
-
+    display: flex;
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: absolute;
     color: $main-white;
     z-index: 1;
-
-    transform: translateY(-100vh);
+   
     opacity: 0;
-
-    transition: all ease-in-out 0.3s;
+    display: none;
 
     .overlay-top{
         width: 100%;
@@ -222,9 +221,8 @@ body {
 // VISIBLE OVERLAY
 
 .visible {
-    visibility: visible;
+    display: flex;
     transform: translateY(0);
-    opacity: 1;
 }
 
 // MODAL BUTTON
@@ -330,14 +328,14 @@ body {
         }
     }
 
-    .overlay {
-        transform: translateY(0);
-        transform: translateX(100vw);
-    }
+    // .overlay {
+    //     transform: translateY(0);
+    //     transform: translateX(100vw);
+    // }
 
-    .visible {
-        transform: translateX(0);
-    }
+    // .visible {
+    //     transform: translateX(0);
+    // }
 
     .btn-plus{
         width: 60px;
